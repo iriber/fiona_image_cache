@@ -4,8 +4,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:fiona_cache/src/domain/cache_file.dart';
-import 'package:fiona_cache/src/domain/cache_file_repository.dart';
+import 'package:fiona_image_cache/src/domain/cache_file.dart';
+import 'package:fiona_image_cache/src/domain/cache_file_repository.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
