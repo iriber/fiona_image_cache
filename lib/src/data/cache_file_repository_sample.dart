@@ -1,6 +1,6 @@
 
-import 'package:fiona_cache/src/domain/cache_file.dart';
-import 'package:fiona_cache/src/domain/cache_file_repository.dart';
+import 'package:fiona_image_cache/src/domain/cache_file.dart';
+import 'package:fiona_image_cache/src/domain/cache_file_repository.dart';
 
 /**
  * This sample repository save the cached files into memory.

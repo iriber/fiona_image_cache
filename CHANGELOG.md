@@ -1,3 +1,5 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+First release
+
+A Flutter package that caches images which the app gets from an URI.
