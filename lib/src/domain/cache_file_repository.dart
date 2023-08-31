@@ -1,13 +1,13 @@
-
+import 'dart:async';
 import 'package:fiona_image_cache/src/domain/cache_file.dart';
 
 abstract class CacheFileRepository {
 
-  Future<void> save(CacheFile cacheFile);
+  FutureOr<void> save(CacheFile cacheFile);
 
-  Future<CacheFile> getByUrl(String url);
+  FutureOr<CacheFile> getByUrl(String url);
 
-  Future<void> clean(List<String> urls);
+  FutureOr<void> clean(List<String> urls);
 
-  Future<void> cleanAll();
+  FutureOr<void> cleanAll();
 }

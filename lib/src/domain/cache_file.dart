@@ -16,7 +16,7 @@ class CacheFile{
   }
 
   Map<String, Object> toMap(){
-    return {'id': this.id, 'url': this.url, 'localName': this.localName};
+    return {'id': id, 'url': url, 'localName': localName};
   }
 
   bool isEmpty() => id==-1;
