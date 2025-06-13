@@ -11,5 +11,5 @@
 ## 1.0.3
 - Remove cache repository
 
-## 1.0.4
+## 1.1.0
 - Remove cache repository
