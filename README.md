@@ -19,8 +19,8 @@ You have to create the manager with the repository and the local path where you 
 
 ```dart
 /* create cache */
-var fionaCache = FionaImageCache(repository:CacheFileRepositoryInMemory(), appPathFolder: "");
-```
+var fionaCache = FionaImageCache(repository:CacheFileRepositoryInMemory(), cacheFolder: "my_cache_folder");
+  ```
 
 Then in your Flutter widget you can use the manager to get the image path from an url.
 The first time, the cache will get the image from the url, download it & save it.
@@ -45,6 +45,3 @@ image.image.resolve(ImageConfiguration()).addListener(
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.

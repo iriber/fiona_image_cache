@@ -1,6 +1,6 @@
 name: fiona_image_cache
 description: A starting point for Dart libraries or applications.
-version: 1.0.0
+version: 1.0.4
 repository: https://github.com/iriber/fiona_image_cache
 
 environment:
