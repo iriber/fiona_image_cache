@@ -1,12 +1,10 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:fiona_image_cache/src/domain/cache_file.dart';
 import 'package:fiona_image_cache/src/domain/cache_file_repository.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
-import 'package:crypto/crypto.dart';
 
 /// This class represents a cache of images.
 
@@ -54,9 +52,7 @@ class FionaImageCache {
       }
     }
 
-    var urlInBytes = utf8.encode(encodedUrl);
-    String value = sha256.convert(urlInBytes).toString();
-    String localName = "$value.$extension";
+    String localName = _generateFileName(extension: extension);
 
     CacheFile cacheFile = CacheFile(-1, encodedUrl, localName);
 
@@ -65,6 +61,11 @@ class FionaImageCache {
     repository.save(cacheFile);
 
     return cacheFile;
+  }
+
+  String _generateFileName({String prefix = "img", String extension = "jpg"}) {
+    final timestamp = DateTime.now().microsecondsSinceEpoch;
+    return "${prefix}_$timestamp.$extension";
   }
 
   Future<dynamic> _downloadImage(String url, String localPath) async {
