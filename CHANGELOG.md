@@ -16,3 +16,6 @@
 
 ## 1.1.1
 - Improve download method
+
+## 1.1.2
+- Autoincrement id for cache memory repository

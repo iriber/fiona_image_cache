@@ -14,6 +14,7 @@ class CacheFileRepositoryInMemory implements CacheFileRepository {
 
   @override
   Future<void> save(CacheFile cacheFile) async {
+    cacheFile.id = files.length + 1;
     files.putIfAbsent(cacheFile.url, () => cacheFile);
   }
 
