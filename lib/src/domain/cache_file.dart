@@ -1,3 +1,5 @@
+///Represent a cached file.
+
 class CacheFile {
   int id = -1;
   String url = "";

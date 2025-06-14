@@ -12,4 +12,7 @@
 - Remove cache repository
 
 ## 1.1.0
-- Remove cache repository
+- add comments and improve examples
+
+## 1.1.1
+- Improve download method

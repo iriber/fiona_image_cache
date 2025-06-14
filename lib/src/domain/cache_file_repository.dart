@@ -1,12 +1,17 @@
 import 'dart:async';
 import 'package:fiona_image_cache/src/domain/cache_file.dart';
-
+///Repository to manage cached files
 abstract class CacheFileRepository {
-  FutureOr<void> save(CacheFile cacheFile);
 
-  FutureOr<CacheFile> getByUrl(String url);
+  ///Saves cache file
+  Future<void> save(CacheFile cacheFile);
 
-  FutureOr<void> clean(List<String> urls);
+  ///Gets chage file by burl
+  Future<CacheFile> getByUrl(String url);
 
-  FutureOr<void> cleanAll();
+  ///Cleans cached urls.
+  Future<void> clean(List<String> urls);
+
+  ///Cleans all cached urls.
+  Future<void> cleanAll();
 }

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:fiona_image_cache/src/domain/cache_file.dart';
 import 'package:fiona_image_cache/src/domain/cache_file_repository.dart';
@@ -56,8 +57,8 @@ class FionaImageCache {
 
     CacheFile cacheFile = CacheFile(-1, encodedUrl, localName);
 
-    await _downloadImage(url, _getLocalPath(cacheFile));
-
+    //await _downloadImage(url, _getLocalPath(cacheFile));
+    await imageUrlToFile(url, _getLocalPath(cacheFile));
     repository.save(cacheFile);
 
     return cacheFile;
@@ -97,6 +98,24 @@ class FionaImageCache {
       return bytes;
     } else {
       throw Exception("Image not found $url");
+    }
+  }
+  Future<File?> imageUrlToFile(String imageUrl, String fullLocalName) async {
+    try {
+      final response = await http.get(Uri.parse(imageUrl));
+
+      if (response.statusCode == 200) {
+        Uint8List bytes = response.bodyBytes;
+
+        File file = File(fullLocalName);
+        return await file.writeAsBytes(bytes);
+      } else {
+        // Error al obtener la imagen
+        return null;
+      }
+    } catch (e) {
+      // Error general
+      return null;
     }
   }
 
