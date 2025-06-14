@@ -69,7 +69,7 @@ class FionaImageCache {
     return "${prefix}_$timestamp.$extension";
   }
 
-  Future<dynamic> _downloadImage(String url, String localPath) async {
+  Future<dynamic> downloadImage(String url, String localPath) async {
     File(localPath).createSync(recursive: true);
     File file = File(localPath);
     var bytes = await _getImageBytes(url);
