@@ -1,12 +1,7 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:fiona_image_cache/fiona_image_cache.dart';
-import 'package:fiona_image_cache/src/domain/cache_file.dart';
-import 'package:fiona_image_cache/src/domain/cache_file_repository.dart';
-import 'package:fiona_image_cache/src/domain/fiona_image_url.dart';
-import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 
 /// This class represents a cache of images.
