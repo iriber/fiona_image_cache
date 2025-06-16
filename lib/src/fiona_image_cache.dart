@@ -2,8 +2,10 @@ import 'dart:async';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:fiona_image_cache/fiona_image_cache.dart';
 import 'package:fiona_image_cache/src/domain/cache_file.dart';
 import 'package:fiona_image_cache/src/domain/cache_file_repository.dart';
+import 'package:fiona_image_cache/src/domain/fiona_image_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 
@@ -19,7 +21,13 @@ class FionaImageCache {
   ///Repository to manage the downloaded images
   CacheFileRepository repository;
 
-  FionaImageCache({required this.repository, this.cacheFolder});
+  ///Repository to manage the downloaded images
+  IFionaImageUrl fionaImageUrl;
+
+  FionaImageCache(
+      {required this.repository,
+      this.cacheFolder,
+      required this.fionaImageUrl});
 
   ///Returns the image by url
   ///Tries to get the image from the repository.
@@ -32,7 +40,6 @@ class FionaImageCache {
   ///Saves the image into the repository
   Future<CacheFile> save(String url) async {
     String encodedUrl = Uri.encodeFull(url);
-
     CacheFile cacheFile = await repository.getByUrl(encodedUrl);
 
     if (cacheFile.isEmpty()) {
@@ -72,7 +79,7 @@ class FionaImageCache {
   Future<dynamic> downloadImage(String url, String localPath) async {
     File(localPath).createSync(recursive: true);
     File file = File(localPath);
-    var bytes = await _getImageBytes(url);
+    var bytes = await getImageBytes(url);
     await file.writeAsBytes(bytes);
     return bytes;
   }
@@ -91,32 +98,12 @@ class FionaImageCache {
     return localPath;
   }
 
-  Future<dynamic> _getImageBytes(url) async {
-    final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) {
-      var bytes = response.bodyBytes;
-      return bytes;
-    } else {
-      throw Exception("Image not found $url");
-    }
+  Future<dynamic> getImageBytes(url) async {
+    return fionaImageUrl.getImageBytes(url);
   }
+
   Future<File?> imageUrlToFile(String imageUrl, String fullLocalName) async {
-    try {
-      final response = await http.get(Uri.parse(imageUrl));
-
-      if (response.statusCode == 200) {
-        Uint8List bytes = response.bodyBytes;
-
-        File file = File(fullLocalName);
-        return await file.writeAsBytes(bytes);
-      } else {
-        // Error al obtener la imagen
-        return null;
-      }
-    } catch (e) {
-      // Error general
-      return null;
-    }
+    return fionaImageUrl.imageUrlToFile(imageUrl, fullLocalName);
   }
 
   Future<void> cleanCache() async {

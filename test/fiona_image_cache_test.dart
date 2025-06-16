@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('A group of tests', () {
-    var fionaCache = FionaImageCache(repository:CacheFileRepositoryInMemory(), cacheFolder: "test/cache");
+    var fionaCache = FionaImageCache(fionaImageUrl: FionaImageUrl() , repository:CacheFileRepositoryInMemory(), cacheFolder: "test/cache");
     var localPath ="";
     setUp(() {
       // Additional setup goes here.

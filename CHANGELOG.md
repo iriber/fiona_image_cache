@@ -19,3 +19,6 @@
 
 ## 1.1.2
 - Autoincrement id for cache memory repository
+
+## 1.2.0
+- Provides a url image resolver in order to define a custom one
